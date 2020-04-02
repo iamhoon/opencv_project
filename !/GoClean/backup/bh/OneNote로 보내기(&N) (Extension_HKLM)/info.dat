@@ -1,0 +1,10 @@
+GoClean_KEY+{2670000A-7350-4f3c-8081-5663EE0C6C49}
+KeyPath+Yes
+ButtonText+OneNote로 보내기
+MenuText+OneNote로 보내기(&N)
+ToolTip+OneNote로 보내기
+Default Visible+Yes
+HotIcon+C:\PROGRA~2\MIF5BA~1\Office16\ONBttnIE.dll,103
+Icon+C:\PROGRA~2\MIF5BA~1\Office16\ONBttnIE.dll,103
+CLSID+{1FBA04EE-3024-11d2-8F1F-0000F87ABD16}
+ClsidExtension+{48E73304-E1D6-4330-914C-F5F514E3486C}

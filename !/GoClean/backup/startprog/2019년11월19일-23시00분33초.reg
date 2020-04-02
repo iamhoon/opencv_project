@@ -1,0 +1,11 @@
+VAL+HKLM+SOFTWARE\Microsoft\Windows\CurrentVersion\Run+SecurityHealth+%windir%\system32\SecurityHealthSystray.exe
+VAL+HKCU+SOFTWARE\Microsoft\Windows\CurrentVersion\Run+OneDrive+"C:\Users\mips\AppData\Local\Microsoft\OneDrive\OneDrive.exe" /background
+VAL+HKCU+SOFTWARE\Microsoft\Windows\CurrentVersion\Run+HancomHNetComAgent+C:\Program Files (x86)\Hnc\Office 2018\HOffice100\Bin\HNetCom.Agent.exe
+VAL+HKCU+SOFTWARE\Microsoft\Windows\CurrentVersion\Run+EPLTarget\P0000000000000000+C:\WINDOWS\system32\spool\DRIVERS\x64\3\E_YATIMRE.EXE /EPT "EPLTarget\P0000000000000000" /M "L655 Series"
+VAL+HKLM+SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Run+HncUpdateTray+C:\Program Files (x86)\Hnc\Office 2018\HncUtils\Service\HncUpdateTray.exe
+VAL+HKLM+SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Run+FUFAXRCV+"C:\Program Files (x86)\Epson Software\FAX Utility\FUFAXRCV.exe"
+VAL+HKLM+SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Run+FUFAXSTM+"C:\Program Files (x86)\Epson Software\FAX Utility\FUFAXSTM.exe"
+VAL+HKLM+SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Run+DAmoWebCrypto+"C:\ProgramData\Penta Security Systems\DAmoWebCrypto\DAmoWebCrypto.exe"
+VAL+HKLM+SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Run+MagicLine4NPIZ+C:\Program Files (x86)\DreamSecurity\MagicLine4NPIZ\MagicLineNPIZ.exe
+VAL+HKLM+SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Run+UBIKey+"C:\Program Files (x86)\INFovine\UBIKeyService.exe"
+LNK+McAfee Security Scan Plus.lnk(lnk)+C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup\McAfee Security Scan Plus.lnk

@@ -1,0 +1,3 @@
+VAL+HKCU+SOFTWARE\Microsoft\Windows\CurrentVersion\Run+CrossEXService+C:\Program Files (x86)\iniLINE\CrossEX\crossex\CrossEXService.exe
+VAL+HKLM+SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Run+Crevit+C:\Program Files (x86)\NTUMNETWORKS\CrevitEx\system\bin\CrevitControllerEx.exe -p10757
+VAL+HKLM+SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Run+NTUMAppMonitorEx+C:\Program Files (x86)\NTUMNETWORKS\AppMonEx\NTUMAppMonitorEx.exe
