@@ -35,8 +35,6 @@ OPENCV_OBJECT_TRACKERS = {
     "mosse": cv2.TrackerMOSSE_create
 }
 
-
-
 # global variables
 top_bottom_list, left_right_list = [], []
 count = 0
@@ -94,7 +92,6 @@ def calculation_length(start, end, perspect_map, onepixel):
     print("변환후 픽셀: ", trans_length)
 
     return trans_length * onepixel
-
 
 def perstpective(perspect_map, pointList, onepixel):  # 이동경로 변환하는 함수
     trans_list = list()
@@ -202,13 +199,11 @@ player_list = []
 success_list = []
 box_list = []
 
-
-
 # 선수의 수만큼 tracker와 추적 ROI를 만듬
 for i in range(0, select_player_num):
     tracker.append(OPENCV_OBJECT_TRACKERS['csrt']())
     rect_list.append(cv2.selectROI('Select Window', img, fromCenter=False, showCrosshair=True))
-    print("선수 순서: "+ str(i))
+    print("선수 순서: " + str(i))
 
 # rect = cv2.selectROI('Select Window', img, fromCenter=False, showCrosshair=True)
 cv2.destroyWindow('Select Window')
@@ -233,20 +228,18 @@ constant_h2 = point_list[1][1] - slope_h2 * point_list[1][0]
 constant_ip = (constant_h2 - constant_13) / (slope_13 - slope_h2)
 intersect_point = [int(constant_ip), int(slope_13 * constant_ip + constant_13)]
 
-point_list_y_ratio = math.sqrt(
-    (pow(intersect_point[0] - point_list[3][0], 2)) + (pow(intersect_point[1] - point_list[3][1], 2))) / \
+point_list_y_ratio = math.sqrt((pow(intersect_point[0] - point_list[3][0], 2)) + (pow(intersect_point[1] - point_list[3][1], 2))) / \
                      math.sqrt((pow(intersect_point[0] - point_list[1][0], 2)) + (pow(intersect_point[1] - point_list[1][1], 2)))
 
 print("비율: ", point_list_y_ratio)
 
 frame_num = 3
 
-
 # #######
 class Player():
     def __init__(self, player_num):
       self.player_num = player_num
-      self.fir_top =0
+      self.fir_top = 0
       self.cur_time = 0 # 현재시간
       self.pre_time = 0
       self.start_time = 0 # 각 선수의 출발 시간 현재 개발 과정에서는 run_time 전역 변수로 통일되어 있음
@@ -291,13 +284,10 @@ class Player():
       }
     # 경로를 그리기 위한 변수들
 
-
     mean_avg_list_size = int(fps / 2)  # 이동평균 리스트 크기
-
 
     # for i in range(mean_avg_list_size):  # 개수만큼 만듬
     #     mean_avg_list.append([0, 0])
-
 
 
     def mean_avg_lis_init(self): # 이동평균 초기화
@@ -309,26 +299,25 @@ class Player():
         self.right = self.left + self.w
         self.bottom = self.top + self.h
         self.center_x = int(self.left + self.w / 2)
-        self.center_y = int(self.top + self.h )
+        self.center_y = int(self.top + self.h)
 
     def draw_box(self, number):
       pt1 = (int(self.left), int(self.top))
       pt2 = (int(self.right), int(self.bottom))
 
-      if number ==0:
-          return cv2.rectangle(img,pt1,pt2,(0,0,255),3)
-      elif number ==1:
+      if number == 0:
+          return cv2.rectangle(img, pt1, pt2, (0, 0, 255), 3)
+      elif number == 1:
           return cv2.rectangle(img, pt1, pt2, (255, 0, 0), 3)
-      elif number==2:
+      elif number == 2:
           return cv2.rectangle(img, pt1, pt2, (0, 255, 0), 3)
-      elif number==3:
+      elif number == 3:
           return cv2.rectangle(img, pt1, pt2, (0, 255, 255), 3)
 
     def constant(self, slope_13, slope_h2, point_list_y_ratio):
         constant_b1 = self.center_y - slope_13 * self.center_x  # 1, 3루
         constant_b2 = self.center_y - slope_h2 * self.center_x  # h, 2루
-        if (constant_b1 > 0 and constant_b2 < 0) or (constant_b1 < 0 and constant_b2 > 0) or (
-                constant_b1 == 0 and constant_b2 >= 0):  # 2,4면이랑 각 선에 있을때
+        if (constant_b1 > 0 and constant_b2 < 0) or (constant_b1 < 0 and constant_b2 > 0) or (constant_b1 == 0 and constant_b2 >= 0):  # 2,4면이랑 각 선에 있을때
           self.f_t_h_cal = (self.h * (abs(self.fir_top - self.top) / int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))))  # 초기위치 - 현재위치
         if (constant_b1 > 0 and constant_b2 > 0) or (constant_b1 < 0 and constant_b2 < 0):  # 1,3면에 있을때
           self.f_t_h_cal = (self.h * (abs(self.fir_top - self.top) / int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))) * point_list_y_ratio)
@@ -459,7 +448,7 @@ class Player():
     def print_imformation(self, perspect_map, onepixel, run_time):
         total_time = sum(self.impormation["시간"]) # 총시간
         total_distance = sum(self.impormation["거리"]) # 총거리
-        avg_speed = round(sum(self.impormation["거리"])/sum(self.impormation["시간"]) * 3.6, 2)
+        avg_speed = round(sum(self.impormation["거리"]) / sum(self.impormation["시간"]) * 3.6, 2)
         for i in range(0, len(self.impormation["베이스"])):
             print(i+1, "구간")
             print("시간: ", self.impormation["시간"][i])
@@ -471,10 +460,9 @@ class Player():
         # v = round(pers_distance / run_time * 3.6, 2)
         # a = round(v / run_time, 2)
         # print("최고 속력 " + + " 입니다.")
-        print("평균 속도",avg_speed, " 입니다.")
+        print("평균 속도", avg_speed, " 입니다.")
         print("최고 속도", max(self.route_pointList), " 입니다")
-        print("시간 "+ str(total_time) +" 입니다.")
-
+        print("시간 "+ str(total_time) + " 입니다.")
 
         file = open("결과파일.txt", 'w')
         file.write("영상 이름: ")
@@ -496,9 +484,9 @@ class Player():
             return 1
         elif point_list.index(now_base) == 3:
             return 0
+
     # 통과 후 정보 측정하기
     def measure(self):
-
         running_time = round(cap.get(cv2.CAP_PROP_POS_MSEC) / 1000, 2) - self.start_time # 달린시간 = 현재시간 - 출발시간
         # self.impormation["경로"].append(self.pointList)
         running_route = round(perstpective(perspect_map, self.pointList, onepixel), 2)
@@ -515,7 +503,7 @@ class Player():
             self.impormation["베이스"].append(self.now_base)
             self.impormation["시간"].append(running_time - sum(self.impormation["시간"]))
             self.impormation["거리"].append(running_route -sum(self.impormation["거리"]))
-            self.impormation["속도"].append(round(self.impormation["거리"][-1] / self.impormation["시간"][-1] *3.6,2))
+            self.impormation["속도"].append(round(self.impormation["거리"][-1] / self.impormation["시간"][-1] * 3.6, 2))
             print("구간 시간: " + str(self.impormation["시간"][-1]))
             print("구간 거리: " + str(self.impormation["거리"][-1]))
             print("구간 속도: " + str(self.impormation["속도"][-1]))
@@ -591,15 +579,15 @@ class Player():
             end_width_point = int(int(cap.get(cv2.CAP_PROP_FRAME_WIDTH)) * end_rect_point_num / 8)
 
             if self.player_num == 1:
-                cv2.rectangle(img, (start_width_point, 0), (end_width_point+2, 92), (0, 0, 255),2)
+                cv2.rectangle(img, (start_width_point, 0), (end_width_point+2, 92), (0, 0, 255), 2)
             elif self.player_num == 2:
                 cv2.rectangle(img, (start_width_point, 0), (end_width_point + 2, 92), (255, 0, 0), 2)
-            elif self.player_num ==3:
+            elif self.player_num == 3:
                 cv2.rectangle(img, (start_width_point, 0), (end_width_point + 2, 92), (0, 255, 0), 2)
-            elif self.player_num ==4:
+            elif self.player_num == 4:
                 cv2.rectangle(img, (start_width_point, 0), (end_width_point + 2, 92), (0, 255, 255), 2)
 
-            cv2.rectangle(img, (start_width_point, 0), (end_width_point, 90), (255, 255, 255),-1)
+            cv2.rectangle(img, (start_width_point, 0), (end_width_point, 90), (255, 255, 255), -1)
 
             cv2.putText(img, 'Player : ' + str(self.player_num), (start_width_point + 3, 20), cv2.FONT_HERSHEY_PLAIN, 1, (0, 0, 0), 1)
             cv2.putText(img, 'now_V : ' + str(self.now_speed), (start_width_point + 3, 40), cv2.FONT_HERSHEY_PLAIN, 1, (0, 0, 0), 1)
@@ -608,12 +596,12 @@ class Player():
 
 
 for i in range(0,select_player_num):
-    player_list.append(Player(i+1))
+    player_list.append(Player(i + 1))
     player_list[i].mean_avg_lis_init()
     # player_list[i].set_base()
     # player_list[i].set_next_base()
 
-time_num =1
+time_num = 1
 
 print("====================")
 print("a: 시작시간 저장")
@@ -622,11 +610,10 @@ print("q: 영상 끝내기")
 print("w: 영상 일시정지")
 
 while True:
-
     # temp_time = round(cap.get(cv2.CAP_PROP_POS_MSEC) / 1000,2)
     # if temp_time == time_num:
     #     print(str(temp_time)+"초입니다.@@@@@@@@@@@@@@@@@@@@@@@@")
-    #     time_num +=1
+    #     time_num += 1
     #     # break
     #
     # print("시간이여::"+str(temp_time))
@@ -642,13 +629,13 @@ while True:
         for i in range(0, select_player_num):
             player_list[i].start_time = round(cap.get(cv2.CAP_PROP_POS_MSEC) / 1000, 2)
         start_a = 1
-    elif k == ord('s'):
-        frame2 = frame
-        # print("끝 프레임: ", frame2)
-        end_run_time = round(cap.get(cv2.CAP_PROP_POS_MSEC) / 1000, 2)
-        run_time = end_run_time - start_run_time
-        print("끝시간: ", run_time)
-        start_a = 2
+    # elif k == ord('s'):
+    #     frame2 = frame
+    #     # print("끝 프레임: ", frame2)
+    #     end_run_time = round(cap.get(cv2.CAP_PROP_POS_MSEC) / 1000, 2)
+    #     run_time = end_run_time - start_run_time
+    #     print("끝시간: ", run_time)
+    #     start_a = 2
     elif k == ord('q'):
         break
     elif k == ord('w'):
@@ -683,7 +670,6 @@ while True:
             player_list[i].route_color(frame, frame1, perspect_map, onepixel)
             player_list[i].calculation_between_base()
 
-
         player_list[i].draw_route()
 
         rect_list[i] = player_list[i].draw_box(i)
@@ -691,12 +677,10 @@ while True:
 
         player_list[i].player_data_box()
 
-
-
-    circle = cv2.circle(img, (point_list[0][0], point_list[0][1]), 10, (255, 0, 0), 2)
-    circle2 = cv2.circle(img, (point_list[1][0], point_list[1][1]), 10, (255, 0, 0), 2)
-    circle3 = cv2.circle(img, (point_list[2][0], point_list[2][1]), 10, (255, 0, 0), 2)
-    circle4 = cv2.circle(img, (point_list[3][0], point_list[3][1]), 10, (255, 0, 0), 2)
+    # circle = cv2.circle(img, (point_list[0][0], point_list[0][1]), 10, (255, 0, 0), 2)
+    # circle2 = cv2.circle(img, (point_list[1][0], point_list[1][1]), 10, (255, 0, 0), 2)
+    # circle3 = cv2.circle(img, (point_list[2][0], point_list[2][1]), 10, (255, 0, 0), 2)
+    # circle4 = cv2.circle(img, (point_list[3][0], point_list[3][1]), 10, (255, 0, 0), 2)
 
     # print("ㅡㅡㅡㅡㅡㅡㅡ")
 
@@ -706,6 +690,6 @@ while True:
 cap.release()
 out.release()
 cv2.destroyAllWindows()
-# player2.print_imformation(perspect_map,onepixel,run_time)
-for i in range(0,select_player_num):
-    player_list[i].print_imformation(perspect_map,onepixel, run_time)
+# player2.print_imformation(perspect_map, onepixel, run_time)
+for i in range(0, select_player_num):
+    player_list[i].print_imformation(perspect_map, onepixel, run_time)
