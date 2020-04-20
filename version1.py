@@ -193,7 +193,7 @@ select_player_num = int(input("추적할 인원 수: "))
 # select ROI 영상의 추적 부분을 지정한다.
 # tracker = OPENCV_OBJECT_TRACKERS['csrt']()
 # 멀티트레킹을 위한 변수
-rect_list= []
+rect_list = []
 tracker = []
 player_list = []
 success_list = []
@@ -302,17 +302,17 @@ class Player():
         self.center_y = int(self.top + self.h)
 
     def draw_box(self, number):
-      pt1 = (int(self.left), int(self.top))
-      pt2 = (int(self.right), int(self.bottom))
+        pt1 = (int(self.left), int(self.top))
+        pt2 = (int(self.right), int(self.bottom))
 
-      if number == 0:
-          return cv2.rectangle(img, pt1, pt2, (0, 0, 255), 3)
-      elif number == 1:
-          return cv2.rectangle(img, pt1, pt2, (255, 0, 0), 3)
-      elif number == 2:
-          return cv2.rectangle(img, pt1, pt2, (0, 255, 0), 3)
-      elif number == 3:
-          return cv2.rectangle(img, pt1, pt2, (0, 255, 255), 3)
+        if number == 0:
+            return cv2.rectangle(img, pt1, pt2, (0, 0, 255), 3)
+        elif number == 1:
+            return cv2.rectangle(img, pt1, pt2, (255, 0, 0), 3)
+        elif number == 2:
+            return cv2.rectangle(img, pt1, pt2, (0, 255, 0), 3)
+        elif number == 3:
+            return cv2.rectangle(img, pt1, pt2, (0, 255, 255), 3)
 
     def constant(self, slope_13, slope_h2, point_list_y_ratio):
         constant_b1 = self.center_y - slope_13 * self.center_x  # 1, 3루
@@ -595,7 +595,7 @@ class Player():
             cv2.putText(img, 'avg_V : ' + str(self.avg_speed), (start_width_point + 3, 80), cv2.FONT_HERSHEY_PLAIN, 1, (0, 0, 0), 1)
 
 
-for i in range(0,select_player_num):
+for i in range(0, select_player_num):
     player_list.append(Player(i + 1))
     player_list[i].mean_avg_lis_init()
     # player_list[i].set_base()

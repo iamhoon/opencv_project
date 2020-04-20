@@ -7,5 +7,6 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="mip_opencv" />
+    <orderEntry type="module" module-name="project_ing" />
   </component>
 </module>

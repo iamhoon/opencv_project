@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/../mip_opencv/.idea/mip_opencv.iml" filepath="$PROJECT_DIR$/../mip_opencv/.idea/mip_opencv.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/project.iml" filepath="$PROJECT_DIR$/.idea/project.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../project_ing/.idea/project_ing.iml" filepath="$PROJECT_DIR$/../project_ing/.idea/project_ing.iml" />
     </modules>
   </component>
 </project>
